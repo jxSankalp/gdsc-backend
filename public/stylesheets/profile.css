@@ -9,6 +9,7 @@ body {
   max-width: 80%;
   margin: 0 auto;
   padding: 20px;
+
 }
 
 .cardpers {
@@ -95,3 +96,16 @@ body {
   width: 100%;
 }
 
+@media (max-width: 768px) {
+  .cardpers {
+    flex-direction: column;
+  }
+  
+  .prof {
+    width: 100%;
+  }
+  
+  .prof.upload {
+    margin-top: 20px;
+  }
+}

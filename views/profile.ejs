@@ -13,80 +13,86 @@
     <link rel="stylesheet" href="/stylesheets/profile.css" />
   </head>
   <body>
-    <div class="containerpers">
-      <div class="cardpers">
-        <div class="prof">
-          <div class="profile-picture">
-            <img
-              src="https://images.unsplash.com/photo-1709148910322-5a58adaf0e9d?q=80&w=1981&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Profile Picture"
-            />
+    <div class="con">
+      <div class="containerpers">
+        <div class="cardpers">
+          <div class="prof">
+            <div class="profile-picture">
+              <img
+                src="https://images.unsplash.com/photo-1709148910322-5a58adaf0e9d?q=80&w=1981&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                alt="Profile Picture"
+              />
+            </div>
+            <h2 class="name"><%=user.fullName%></h2>
+            <h3 class="username">@<%=user.typeOfUser%></h3>
+            <a href="/logout" class="button">Logout</a>
           </div>
-          <h2 class="name"><%=user.fullName%></h2>
-          <h3 class="username">@<%=user.typeOfUser%></h3>
-          <a href="/logout" class="button">Logout</a>
-        </div>
 
-        <div class="prof upload">
-          <form action="/upload" method="post" enctype="multipart/form-data">
-            <input
-              type="text"
-              name="projectName"
-              placeholder="Project Name"
-              required
-            />
-            <input
-              type="text"
-              name="githubLink"
-              placeholder="Github Link"
-              required
-            />
-            <input type="text" name="liveLink" placeholder="Live Hosted Link" />
+          <div class="prof upload">
+            <form action="/upload" method="post" enctype="multipart/form-data">
+              <input
+                type="text"
+                name="projectName"
+                placeholder="Project Name"
+                required
+              />
+              <input
+                type="text"
+                name="githubLink"
+                placeholder="Github Link"
+                required
+              />
+              <input
+                type="text"
+                name="liveLink"
+                placeholder="Live Hosted Link"
+              />
 
-            <input type="file" name="file" required />
-            <button type="submit">Upload</button>
-          </form>
+              <input type="file" name="file" required />
+              <button type="submit">Upload</button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="container">
-      <div class="cards">
-        <% user.posts.forEach(function(post){%>
+      <div class="container">
+        <div class="cards">
+          <% user.posts.forEach(function(post){%>
 
-        <div class="card" style="width: 20rem">
-          <img
-            src="/images/uploads/<%= post.thumbnail%>"
-            class="card-img-top"
-            alt="..."
-          />
-          <div class="card-body">
-            <h5 class="card-title"><%= post.projectName%></h5>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                <a href="<%= post.githubLink%>">Github Link</a>
-              </li>
-              <% if (post.liveLink) { %>
-              <li class="list-group-item">
-                <a href="<%= post.liveLink %>">Live Link</a>
-              </li>
-              <% } %>
-              <li class="list-group-item">
-                <form
-                  action="/delete/<%= post._id %>"
-                  method="post"
-                  style="display: inline"
-                >
-                  <button type="submit">Delete</button>
-                </form>
-              </li>
-              <li class="list-group-item">
-                <a href="/editPost/<%= post._id %>" class="button">Edit</a>
-              </li>
-            </ul>
+          <div class="card" style="width: 20rem">
+            <img
+              src="/images/uploads/<%= post.thumbnail%>"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title"><%= post.projectName%></h5>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <a href="<%= post.githubLink%>">Github Link</a>
+                </li>
+                <% if (post.liveLink) { %>
+                <li class="list-group-item">
+                  <a href="<%= post.liveLink %>">Live Link</a>
+                </li>
+                <% } %>
+                <li class="list-group-item">
+                  <form
+                    action="/delete/<%= post._id %>"
+                    method="post"
+                    style="display: inline"
+                  >
+                    <button type="submit">Delete</button>
+                  </form>
+                </li>
+                <li class="list-group-item">
+                  <a href="/editPost/<%= post._id %>" class="button">Edit</a>
+                </li>
+              </ul>
+            </div>
           </div>
+          <%})%>
         </div>
-        <%})%>
       </div>
     </div>
     <script
