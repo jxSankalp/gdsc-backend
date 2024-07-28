@@ -11,13 +11,10 @@
       <div class="content">
         <p class="header">Sign Up</p>
 
-        <%if(error.length>0){%>
-
-        <p class="error"><%= error%></p>
-        <%}%>
-
-        <% if (messages.success) { %>
-          <p class="success"><%= messages.success %></p>
+        <% if (messages.error) { %>
+        <div class="alert alert-danger"><%= messages.error %></div>
+        <% } %> <% if (messages.success) { %>
+        <p class="success"><%= messages.success %></p>
         <% } %>
 
         <form action="/signup" method="post">

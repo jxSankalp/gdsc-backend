@@ -55,17 +55,23 @@ router.post("/signup", async function (req, res, next) {
   const { fullName, email, password, confirmPassword, typeOfUser } = req.body;
 
   if (password !== confirmPassword) {
-    return res.status(400).send("Passwords do not match");
+    req.flash(
+      "error",
+      "Passwords do not match"
+    );
+
+    return res.redirect("/signup");
   }
 
   // Validate password format
   const passwordRegex =
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
   if (!passwordRegex.test(password)) {
     req.flash(
       "error",
-      "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+      "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character(from '@$!%*?&#' )"
     );
+    
     return res.redirect("/signup");
   }
 
