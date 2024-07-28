@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Users</title>
+  <link rel="stylesheet" href="/stylesheets/admin.css">
+</head>
+<body>
+  <h1>All Users and Projects</h1>
+  <ul>
+    <% users.forEach(user => { %>
+      <li>
+        <h2><%= user.fullName %> (<%= user.email %>)</h2>
+        <ul>
+          <% user.posts.forEach(post => { %>
+            <li>
+              <p><%= post.projectName %></p>
+              <a href="/editPost/<%= post._id %>" >Edit</a>
+              <form action="/delete/<%= post._id %>" method="post" style="display:inline;">
+                <button type="submit">Delete</button>
+              </form>
+            </li>
+          <% }) %>
+        </ul>
+      </li>
+    <% }) %>
+  </ul>
+  <a href="/logout" class="button">Logout</a>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Post</title>
+    <link rel="stylesheet" href="/stylesheets/edit.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Edit Post</h1>
+      <div class="prof upload">
+        <form action="/editPost/<%= post._id %>" method="post">
+          <label for="projectName">Project Name:</label>
+          <input
+            type="text"
+            id="projectName"
+            name="projectName"
+            value="<%= post.projectName %>"
+          /><br />
+
+          <label for="githubLink">Github Link:</label>
+          <input
+            type="text"
+            id="githubLink"
+            name="githubLink"
+            value="<%= post.githubLink %>"
+          /><br />
+
+          <label for="liveLink">Live Hosted Link:</label>
+          <input
+            type="text"
+            id="liveLink"
+            name="liveLink"
+            value="<%= post.liveLink %>"
+          /><br />
+
+          <button type="submit">Update Post</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

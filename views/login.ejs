@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/login.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <p class="header">Log in</p>
+
+        <%if(error.length>0){%>
+
+        <p class="error"><%= error%></p>
+        <%}%>
+
+        <form action="/" method="post">
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            class="detail"
+          /><br />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            class="detail"
+          />
+          <input value="Log In" type="submit" class="btn int" />
+        </form>
+
+        <footer>
+          <p>
+            By continuing, you agree to Pinterest's
+            <b>Terms of Service, Privacy policy.</b>
+          </p>
+          <hr />
+          <a href="/signup">First time? Sign Up</a>
+        </footer>
+      </div>
+    </div>
+  </body>
+
+ 
+</html>
