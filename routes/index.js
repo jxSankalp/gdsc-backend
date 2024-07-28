@@ -102,7 +102,7 @@ router.post("/signup", async function (req, res, next) {
         sendEmail(
           user.email,
           "Verify your email",
-          `Please click on the following link to verify your email: http://localhost:3000/verify/${verToken.token}`
+          `Please click on the following link to verify your email: https://gdsc-backend-gpgt.onrender.com/verify/${verToken.token}`
         );
 
         req.flash(
