@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 
-mongoose.connect("mongodb://127.0.0.1:27017/gdsc-back");
+mongoose.connect(
+  "mongodb+srv://sankalpjain2006:KzauK00XPLfsaYNg@gdsc-backend.x557xam.mongodb.net/"
+);
 
 const userSchema = new mongoose.Schema({
   email: {
