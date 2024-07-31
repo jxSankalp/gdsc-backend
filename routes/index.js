@@ -57,7 +57,7 @@ router.post("/signup", async function (req, res, next) {
   if (password !== confirmPassword) {
     req.flash(
       "error",
-      "Passwords do not match"
+      "Passwords do not match" 
     );
 
     return res.redirect("/signup");
