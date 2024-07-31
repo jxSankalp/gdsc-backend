@@ -52,17 +52,13 @@ router.post("/signup", async function (req, res, next) {
     "22ucs212@lnmiit.ac.in",
   ];
 
-  const {
-    fullName,
-    email,
-    password,
-    confirmPassword,
-    typeOfUser,
-    recaptchaToken,
-  } = req.body;
+  const { fullName, email, password, confirmPassword, typeOfUser } = req.body;
 
   if (password !== confirmPassword) {
-    req.flash("error", "Passwords do not match");
+    req.flash(
+      "error",
+      "Passwords do not match" 
+    );
 
     return res.redirect("/signup");
   }
@@ -75,7 +71,7 @@ router.post("/signup", async function (req, res, next) {
       "error",
       "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character(from '@$!%*?&#' )"
     );
-
+    
     return res.redirect("/signup");
   }
 
@@ -85,26 +81,10 @@ router.post("/signup", async function (req, res, next) {
   }
 
   try {
+
     let existingUser = await userModel.findOne({ email: email });
     if (existingUser) {
       req.flash("error", "Email is already in use");
-      return res.redirect("/signup");
-    }
-
-    const secretKey = "6LfD_xsqAAAAAFFgqAOHzvdngdGez72c0KjXw_Zt";
-    const response = await axios.post(
-      `https://www.google.com/recaptcha/api/siteverify`,
-      null,
-      {
-        params: {
-          secret: secretKey,
-          response: recaptchaToken,
-        },
-      }
-    );
-
-    if (!response.data.success) {
-      req.flash("error", "reCAPTCHA verification failed. Please try again.");
       return res.redirect("/signup");
     }
 
